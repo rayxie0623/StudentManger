@@ -82,6 +82,7 @@ class Handler_Db(object):
         '''
         改
         :param sql:
+
         :return:
         '''
         self.excute_sql(sql, var)
@@ -139,17 +140,20 @@ class Handler_Db(object):
 
     def update_by_id(self, old_id, new_id):
         if self.query_by_id(old_id):
-            #todo
-            pass
+            sql = "update class_15 set id = %s where id = %s"
+            print(sql)
+            val = (new_id, old_id)
+            self.update(sql, val)
 
     def update_by_name(self, old_name, new_name):
-        if self.delete_by_name(old_name):
-            #todo
-            pass
+        if self.query_by_name(old_name):
+            sql = "update class_15 set name = %s where name = %s"
+            val = (new_name, old_name)
+            self.update(sql, val)
 
     def query_by_id(self, id):
         sql = "select * from " + self.conf.get_db("table15") + " where id = " + str(id)
-        print(sql)
+        # print(sql)
         if not self.query(sql):
             print("id不存在")
             return False
@@ -157,7 +161,7 @@ class Handler_Db(object):
 
     def query_by_name(self, name):
         sql = "select * from " + self.conf.get_db("table15") + " where name = " + "'"+ name +"'"
-        print(sql)
+        # print(sql)
         if not self.query(sql):
             print(name + "不存在")
             return False

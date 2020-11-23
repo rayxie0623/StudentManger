@@ -50,10 +50,17 @@ class TestHandler_Db(TestCase):
         hd.delete_by_name("黄乔")
 
     def test_update_by_id(self):
-        self.fail()
+        hd = Handler_Db()
+        old_id = 3
+        new_id = 4
+        hd.update_by_id(old_id, new_id)
+
 
     def test_update_by_name(self):
-        self.fail()
+        hd = Handler_Db()
+        old_name = '黄乔'
+        new_name = '小仙女'
+        hd.update_by_name(old_name, new_name)
 
     def test_query_by_id(self):
         hd = Handler_Db()
